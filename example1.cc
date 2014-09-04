@@ -1,5 +1,5 @@
 #include <iostream>
-#include <UriParser.h>
+#include <uri-parser.h>
 
 using namespace std;
 using namespace uri;
