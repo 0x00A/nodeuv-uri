@@ -6,16 +6,22 @@ using namespace uri;
 
 int main() {
 
-  string haystack = "http://user:password@www.google.com:80/path?search";
+  cout << endl;
 
-  auto parsed = ParseHttpUrl(haystack);
-  
-  cout << "Protocol: " << parsed.protocol << "\n"
-       << "User:     " << parsed.user << "\n"
-       << "Password: " << parsed.password << "\n"
-       << "Host:     " << parsed.host << "\n"
-       << "Port:     " << parsed.port << "\n"
-       << "Path:     " << parsed.path << "\n"
-       << "Search:   " << parsed.search << std::endl;
+  string haystack = "http://user:password@www.google.com:80/path?search=foo&bar=bazz";
+
+  cout << haystack << endl << endl;
+
+  auto u = ParseHttpUrl(haystack);
+ 
+  cout << "Protocol:       " << u.protocol << "\n"
+       << "User:           " << u.user << "\n"
+       << "Password:       " << u.password << "\n"
+       << "Host:           " << u.host << "\n"
+       << "Port:           " << u.port << "\n"
+       << "Path:           " << u.path << "\n"
+       << "Search:         " << u.search << "\n"
+       << "Query (search): " << u.query.at("search") << "\n"
+       << "Query (bar):    " << u.query.at("bar") << "\n" << endl;
 }
 

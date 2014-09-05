@@ -1,10 +1,17 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <map>
+#include <vector>
+#include <sstream>
 
 namespace uri {
 
   using namespace std;
+
+  typedef map<string, string> qsmap;
+  typedef vector<string> split;
+
   struct url {
     string protocol;
     string user;
@@ -12,6 +19,7 @@ namespace uri {
     string host;
     string path;
     string search;
+    qsmap query;
     int port;
   };
 
@@ -47,6 +55,24 @@ namespace uri {
     return output;
   }
 
+  static inline split Split(const std::string& input, const string& separators, bool remove_empty = true) {
+    split list;
+    ostringstream word;
+    for (size_t n = 0; n < input.size(); ++n) {
+      if (string::npos == separators.find(input[n]))
+        word << input[n];
+      else {
+        if (!word.str().empty() || !remove_empty) {
+          list.push_back(word.str());
+        }
+        word.str("");
+      }
+    }
+    if (!word.str().empty() || !remove_empty) {
+      list.push_back(word.str());
+    }
+    return list;
+  }
 
   //--- Extractors -------------------------------------------------------------------~
   static inline int ExtractPort(string &hostport) {
@@ -78,6 +104,12 @@ namespace uri {
     ret.port = ExtractPort(in);
     ret.host = in;
 
+    auto pairs = Split(ret.search, "&");
+
+    for(auto &p : pairs) {
+      auto pair = Split(p, "=");
+      ret.query.insert({ pair[0], pair[1] });
+    }
     return ret;
   }
 }
