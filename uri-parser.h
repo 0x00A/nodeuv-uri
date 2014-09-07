@@ -98,9 +98,11 @@ namespace uri {
     ret.protocol = ExtractProtocol(in);
     ret.search = ExtractSearch(in);
     ret.path = ExtractPath(in);
+
     string userpass = ExtractUserpass(in);
     ret.password = ExtractPassword(userpass);
     ret.user = userpass;
+
     ret.port = ExtractPort(in);
     ret.host = in;
 
@@ -108,7 +110,9 @@ namespace uri {
 
     for(auto &p : pairs) {
       auto pair = Split(p, "=");
-      ret.query.insert({ pair[0], pair[1] });
+      if (pair.size() == 2) {
+        ret.query.insert({ pair[0], pair[1] });
+      }
     }
     return ret;
   }
