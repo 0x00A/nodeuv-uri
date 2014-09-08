@@ -1,5 +1,5 @@
 #include <iostream>
-#include <nodeuv-uri.h>
+#include <uri.h>
 
 using namespace std;
 using namespace uri;
