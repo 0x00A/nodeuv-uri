@@ -4,7 +4,7 @@ a little C++ library that parses URLs into bite-sized pieces.
 # EXAMPLE
 ```cpp
 #include <iostream>
-#include <uri-parser.h>
+#include <nodeuv-uri.h>
 
 using namespace std;
 using namespace uri;
