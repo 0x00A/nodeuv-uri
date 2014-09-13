@@ -8,7 +8,7 @@ int main() {
 
   cout << endl;
 
-  string haystack = "http://user:password@www.google.com:80/path?search=foo&bar=bazz";
+  string haystack = "http://user:password@www.google.com:80/path?search=http://foo.com&bar=bazz";
 
   cout << haystack << endl << endl;
 

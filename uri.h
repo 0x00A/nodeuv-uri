@@ -92,11 +92,13 @@ namespace uri {
 
   //--- Public Interface -------------------------------------------------------------~
   static inline url ParseHttpUrl(string &in) {
+
     url ret;
     ret.port = -1;
 
-    ret.protocol = ExtractProtocol(in);
     ret.search = ExtractSearch(in);
+    ret.protocol = ExtractProtocol(in);
+
     ret.path = ExtractPath(in);
 
     string userpass = ExtractUserpass(in);
