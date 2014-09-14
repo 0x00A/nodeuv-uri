@@ -142,7 +142,7 @@ namespace uri {
       /* F */ -1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1
   };
       
-  std::string UriDecode(const std::string & sSrc) {
+  static inline std::string UriDecode(const std::string & sSrc) {
 
     // Note from RFC1630:  "Sequences which start with a percent sign
     // but are not followed by two hexadecimal characters (0-9, A-F) are reserved
@@ -204,7 +204,7 @@ namespace uri {
       /* F */ 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0
   };
 
-  std::string UriEncode(const std::string & sSrc) {
+  static inline std::string UriEncode(const std::string & sSrc) {
       const char DEC2HEX[16 + 1] = "0123456789ABCDEF";
       const unsigned char * pSrc = (const unsigned char *)sSrc.c_str();
       const int SRC_LEN = sSrc.length();
