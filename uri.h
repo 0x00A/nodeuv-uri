@@ -1,3 +1,6 @@
+#ifndef NODEUV_URI
+#define NODEUV_URI
+
 #include <iostream>
 #include <string>
 #include <stdlib.h>
@@ -229,4 +232,6 @@ namespace uri {
     return sResult;
   }
 }
+
+#endif
 
